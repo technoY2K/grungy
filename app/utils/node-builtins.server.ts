@@ -10,7 +10,7 @@ export const imxClient = async () => {
     const getAsset = async () => {
         const response = await client.getAsset({
             address: "0xacb3c6a43d15b907e8433077b6d38ae40936fe2c",
-            id: "3070427",
+            id: "214063224",
             include_fees: false,
         });
 

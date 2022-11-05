@@ -12,7 +12,9 @@ export function Home({ nft }: HomeProps) {
             <h1 className="mb-4 text-5xl text-white">GODZ</h1>
             <h2 className="text-white">{nft.collection.name}</h2>
             <h2 className="text-white">{nft.name}</h2>
-            <p className="text-white">{nft.description ?? "Description"}</p>
+            {nft.description ? (
+                <p className="text-white">{nft.description}</p>
+            ) : null}
         </div>
     );
 }

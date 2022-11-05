@@ -6,10 +6,9 @@ import { Home } from "~/pages";
 
 export const loader: LoaderFunction = async () => {
     const { getAsset } = await imxClient();
-
     const response = await getAsset();
-
     const nft: ImxAsset = response;
+
     return json(nft);
 };
 
