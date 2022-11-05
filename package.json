@@ -30,6 +30,7 @@
     "dependencies": {
         "@architect/architect": "^10.6.0",
         "@architect/functions": "^5.2.2",
+        "@imtbl/imx-sdk": "^1.36.1",
         "@remix-run/architect": "^1.7.2",
         "@remix-run/node": "^1.7.2",
         "@remix-run/react": "^1.7.2",
