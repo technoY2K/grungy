@@ -1,4 +1,4 @@
-import { ImmutableXClient } from "@imtbl/imx-sdk";
+import { imxClient } from "~/utils/node-builtins.server";
 import { type LoaderFunction, json } from "@remix-run/node";
 import { useLoaderData } from "@remix-run/react";
 
@@ -6,15 +6,11 @@ interface ImxAsset {
     message: string;
 }
 
-const initImxClient = async () => {
-    const url = "https://api.x.immutable.com/v1";
-    return await ImmutableXClient.build({ publicApiUrl: url });
-};
-
 export const loader: LoaderFunction = async () => {
-    const imx = await initImxClient();
+    const client = await imxClient();
+    const msg: ImxAsset = { message: "GODZ" };
 
-    return json({ message: "TESTING" });
+    return json(msg);
 };
 
 export default function Index() {
@@ -22,7 +18,6 @@ export default function Index() {
 
     return (
         <main className="flex h-screen items-center justify-center bg-[#191E2B]">
-            <h1 className="text-white">GODZZ</h1>
             <h1 className="text-white">{asset.message}</h1>
         </main>
     );
