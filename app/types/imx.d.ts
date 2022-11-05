@@ -1,5 +1,8 @@
 import { type ImmutableXClient } from "@imtbl/imx-sdk";
 
+export type MakeOptional<Type, Key extends keyof Type> = Omit<Type, Key> &
+    Partial<Pick<Type, Key>>;
+
 export interface CollectionDetails {
     icon_url: string | null;
     name: string;
