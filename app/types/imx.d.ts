@@ -20,3 +20,4 @@ export interface Fee {
 }
 
 export type ImxAsset = Awaited<ReturnType<ImmutableXClient["getAsset"]>>;
+export type ImxGUAsset = MakeOptional<Asset, "metadata">;

@@ -1,20 +1,14 @@
-import type { ImxAsset as Asset, MakeOptional } from "~/types/imx";
+import type { ImxGUAsset } from "~/types/imx";
+import { NftCard } from "~/components";
 
-type ImxAsset = MakeOptional<Asset, "metadata">;
-
-interface HomeProps {
-    nft: ImxAsset;
+interface Props {
+    nft: ImxGUAsset;
 }
 
-export function Home({ nft }: HomeProps) {
+export function Home({ nft }: Props) {
     return (
-        <div className="flex h-full flex-col items-center justify-center">
-            <h1 className="mb-4 text-5xl text-white">GODZ</h1>
-            <h2 className="text-white">{nft.collection.name}</h2>
-            <h2 className="text-white">{nft.name}</h2>
-            {nft.description ? (
-                <p className="text-white">{nft.description}</p>
-            ) : null}
+        <div className="flex h-full flex-col items-center pt-20">
+            <NftCard nft={nft} />
         </div>
     );
 }
