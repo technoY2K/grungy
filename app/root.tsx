@@ -3,11 +3,10 @@ import {
     Links,
     LiveReload,
     Meta,
-    Outlet,
     Scripts,
     ScrollRestoration,
 } from "@remix-run/react";
-
+import { App } from "~/components";
 import tailwindStylesheetUrl from "./styles/tailwind.css";
 
 export const links: LinksFunction = () => {
@@ -24,15 +23,15 @@ export const meta: MetaFunction = () => ({
     viewport: "width=device-width,initial-scale=1",
 });
 
-export default function App() {
+export default function Root() {
     return (
         <html lang="en" className="h-full bg-[#191E2B]">
             <head>
                 <Meta />
                 <Links />
             </head>
-            <body className="h-full">
-                <Outlet />
+            <body>
+                <App />
                 <ScrollRestoration />
                 <Scripts />
                 <LiveReload />
