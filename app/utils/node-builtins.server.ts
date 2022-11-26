@@ -4,7 +4,7 @@
 import { ImmutableX, Config } from "@imtbl/core-sdk";
 
 export const imxClient = async () => {
-    const client = new ImmutableX(Config.SANDBOX);
+    const client = new ImmutableX(Config.PRODUCTION);
 
     const getAsset = async () => {
         const response = await client.getAsset({
