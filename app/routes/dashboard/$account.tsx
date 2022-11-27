@@ -22,7 +22,7 @@ export const AssetsView = () => {
     const data = useLoaderData<AssetWithOrders[]>();
 
     return (
-        <div className="flex flex-wrap justify-center">
+        <div className="flex flex-wrap justify-between">
             {data.map((nft) => (
                 <NftCard key={nft.token_id} nft={nft} />
             ))}

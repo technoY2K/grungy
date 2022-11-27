@@ -5,7 +5,7 @@ export default function DashboardIndex() {
     const { account, balance, connect } = useWallet();
 
     return (
-        <div className="h-full pt-20 text-white">
+        <div className="text-white">
             <div className="mb-8">
                 <p>{`Connected Address: ${account ? account : ""}`}</p>
                 <p>{`Balance: ${balance ? balance : ""}`}</p>

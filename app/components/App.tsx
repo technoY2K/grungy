@@ -1,11 +1,15 @@
 import { Outlet } from "@remix-run/react";
 import { EthersProvider } from "~/hooks/useEthersProvider";
+import { Navigation } from "~/components";
 
 export function App() {
     return (
         <main className="h-full">
             <EthersProvider>
-                <Outlet />
+                <Navigation />
+                <main className="px-8 pt-20">
+                    <Outlet />
+                </main>
             </EthersProvider>
         </main>
     );

@@ -6,7 +6,7 @@ interface Props {
 
 export function NftCard({ nft }: Props) {
     return (
-        <div className="w-1/2 rounded-md border-2 border-stone-50 sm:w-1/3 md:w-1/4">
+        <div className="w-[300px]">
             <img
                 className="w-full"
                 src={nft.image_url ?? ""}
