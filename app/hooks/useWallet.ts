@@ -1,6 +1,7 @@
 import { ethers } from "ethers";
 import { useCallback, useEffect, useState } from "react";
 import { useGetEthersProviderContext } from "./useEthersProvider";
+import { reportError } from "~/telemetry";
 
 export type ConnectedAccount = string | undefined;
 
@@ -23,8 +24,8 @@ export default function useWalletConnector() {
                             setIsConnected(true);
                         }
                     })
-                    .catch((err) => {
-                        reportError(err);
+                    .catch((error) => {
+                        reportError(error);
                     });
             } else {
                 setIsConnected(false);
@@ -50,7 +51,9 @@ export default function useWalletConnector() {
                 .then((balance) => {
                     setBalance(ethers.utils.formatEther(balance));
                 })
-                .catch((err) => console.error(err));
+                .catch((error) => {
+                    reportError(error);
+                });
         }
     }, [account, provider]);
 
@@ -64,15 +67,15 @@ export default function useWalletConnector() {
                         setIsConnected(true);
                     }
                 })
-                .catch((err) => {
-                    console.log(err);
+                .catch((error) => {
+                    reportError(error);
                 });
         }
     };
 
     const disconnect = () => {
-        setBalance(undefined);
         setAccount(undefined);
+        setBalance(undefined);
     };
 
     return { account, balance, connect, disconnect, isConnected };
