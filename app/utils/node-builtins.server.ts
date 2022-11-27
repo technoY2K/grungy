@@ -16,8 +16,17 @@ export const imxClient = async () => {
         return response;
     };
 
+    const getGods = async (account: string) => {
+        const response = await client.listAssets({
+            user: account,
+        });
+
+        return response;
+    };
+
     return {
         getAsset,
+        getGods,
     };
 };
 
