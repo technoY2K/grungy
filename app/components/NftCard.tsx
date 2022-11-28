@@ -22,7 +22,7 @@ export function NftCard({ detailMode, nft }: Props) {
                         className="rounded border border-blue-500 bg-transparent from-cyan-500 to-blue-500 py-2 px-4 font-semibold text-white hover:bg-gradient-to-r"
                         to={`view/${nft.token_id}`}
                     >
-                        View Assets
+                        View Asset
                     </Link>
                 </section>
             ) : null}
