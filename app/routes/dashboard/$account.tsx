@@ -6,7 +6,7 @@ import type { ListAssetsResponse, AssetWithOrders } from "~/types/imx";
 import { NftCard } from "~/components";
 
 export const loader: LoaderFunction = async ({ params }) => {
-    invariant(params.account, "Expected a public wallet address");
+    invariant(params.account, "Expected a wallet address");
 
     const { getGods } = await imxClient();
     const response: ListAssetsResponse = await getGods(params.account);
@@ -18,16 +18,16 @@ export const loader: LoaderFunction = async ({ params }) => {
     return json(gods);
 };
 
-export const AssetsView = () => {
+export const Account = () => {
     const data = useLoaderData<AssetWithOrders[]>();
 
     return (
-        <div className="flex flex-wrap justify-between">
+        <div className="flex flex-wrap justify-between gap-y-20">
             {data.map((nft) => (
-                <NftCard key={nft.token_id} nft={nft} />
+                <NftCard detailMode key={nft.token_id} nft={nft} />
             ))}
         </div>
     );
 };
 
-export default AssetsView;
+export default Account;

@@ -6,10 +6,10 @@ import { ImmutableX, Config } from "@imtbl/core-sdk";
 export const imxClient = async () => {
     const client = new ImmutableX(Config.PRODUCTION);
 
-    const getAsset = async () => {
+    const getAsset = async (tokenId: string) => {
         const response = await client.getAsset({
             tokenAddress: "0xacb3c6a43d15b907e8433077b6d38ae40936fe2c",
-            tokenId: "214063224",
+            tokenId,
             includeFees: false,
         });
 
