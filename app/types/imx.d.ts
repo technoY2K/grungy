@@ -1,4 +1,4 @@
-export { ListAssetsResponse, AssetWithOrders } from "@imtbl/core-sdk";
+export { ListAssetsResponse, AssetWithOrders, Asset } from "@imtbl/core-sdk";
 
 export type MakeOptional<Type, Key extends keyof Type> = Omit<Type, Key> &
     Partial<Pick<Type, Key>>;
@@ -17,6 +17,22 @@ export interface Fee {
     address: string;
     percentage: number;
     type: string;
+}
+
+export interface GodCard {
+    god: string;
+    set: string;
+    mana: number;
+    name: string;
+    type: string;
+    image: string;
+    proto: number;
+    tribe: string;
+    attack: number;
+    effect: string;
+    health: number;
+    rarity: string;
+    quality: string;
 }
 
 export type ImxAsset = Awaited<ReturnType<ImmutableXClient["getAsset"]>>;

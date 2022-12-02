@@ -1,7 +1,7 @@
 import { json, type LoaderFunction } from "@remix-run/node";
 import invariant from "tiny-invariant";
 import { imxClient } from "~/utils/node-builtins.server";
-import type { ImxGUAsset } from "~/types/imx";
+import type { Asset, GodCard } from "~/types/imx";
 import { NftCard } from "~/components";
 import { useLoaderData } from "@remix-run/react";
 
@@ -10,14 +10,43 @@ export const loader: LoaderFunction = async ({ params }) => {
     invariant(params.tokenId, "Expected token id");
 
     const { getAsset } = await imxClient();
-    const response: ImxGUAsset = await getAsset(params.tokenId);
+    const response: Asset = await getAsset(params.tokenId);
 
     return json(response);
 };
 
-export const Asset = () => {
-    const nft = useLoaderData();
+interface AttribteStateProps {
+    label: string;
+    value: number;
+}
+
+const AttributeStat = ({ label, value }: AttribteStateProps) => {
+    if (!value) {
+        return null;
+    }
+
+    console.log(value);
+
+    const p = value / 17;
+    const barPercentage = p * 100;
+    const w = `w-[${Math.trunc(barPercentage)}%]`;
+
+    return (
+        <div>
+            <p className="mb-4">{label}</p>
+            <div className="mb-6 h-1 w-full bg-gray-200">
+                <div className={`h-1 ${w} bg-blue-500`}></div>
+            </div>
+        </div>
+    );
+};
+
+export const AssetView = () => {
+    const nft = useLoaderData<Asset>();
     const { metadata } = nft;
+    const isGodCard = (data: unknown): data is GodCard => {
+        return (data as GodCard).god !== undefined;
+    };
 
     return (
         <div className="text-white">
@@ -25,33 +54,16 @@ export const Asset = () => {
                 <NftCard nft={nft} />
             </section>
             <section>
-                {metadata.mana ? (
-                    <>
-                        <p className="mb-4">Mana</p>
-                        <div className="mb-6 h-1 w-full bg-gray-200">
-                            <div className="h-1 w-1/4 bg-blue-500"></div>
-                        </div>
-                    </>
-                ) : null}
-                {metadata.attack ? (
-                    <>
-                        <p className="mb-4">Attack</p>
-                        <div className="mb-6 h-1 w-full bg-gray-200">
-                            <div className="h-1 w-1/3 bg-yellow-500"></div>
-                        </div>
-                    </>
-                ) : null}
-                {metadata.health ? (
-                    <>
-                        <p className="mb-4">Health</p>
-                        <div className="mb-6 h-1 w-full bg-gray-200">
-                            <div className="h-1 w-3/4 bg-red-500"></div>
-                        </div>
-                    </>
+                {isGodCard(metadata) ? (
+                    <div>
+                        <AttributeStat label="Mana" value={metadata.mana} />
+                        <AttributeStat label="Health" value={metadata.health} />
+                        <AttributeStat label="Attack" value={metadata.attack} />
+                    </div>
                 ) : null}
             </section>
         </div>
     );
 };
 
-export default Asset;
+export default AssetView;

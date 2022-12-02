@@ -1,8 +1,8 @@
-import type { ImxGUAsset } from "~/types/imx";
+import type { AssetWithOrders } from "~/types/imx";
 import { NftCard } from "~/components";
 
 interface Props {
-    nft: ImxGUAsset;
+    nft: AssetWithOrders;
 }
 
 export function Dashboard({ nft }: Props) {
